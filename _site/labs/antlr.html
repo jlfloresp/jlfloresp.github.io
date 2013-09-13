@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Laboratorio #2</title>
+        <meta name="viewport" content="width=device-width">
+        
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/syntax.css">
+	<link rel="stylesheet" type="text/css" href="/ug-cc4-labs/bootstrap/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/main.css">
+    </head>
+    <body>
+      <div id="wrap">
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container-fluid">
+	      <div class="span8 offset2">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</a>
+		<a href="/">
+		  <img class="brand-logo pull-left" src="/ug-cc4-labs/images/ug_128.png" width="32px">
+		</a>
+		<a class="brand" href="/ug-cc4-labs/">Laboratorios</a>
+		<div class="nav-collapse collapse">
+		  <ul class="nav">
+		    <li class="active"><a href="#">Home</a></li>
+		  </ul>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	  
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2">
+	      <ul class="nav nav-list bs-docs-sidenav affix">
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic2.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #9
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #8
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/ast.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #7
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/json-parser.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #6
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/json.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #5
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/grammars.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #4
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/lexers.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #3
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li class="active">
+		    <a href="/ug-cc4-labs/labs/antlr.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #2
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/packages.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #1
+		    </a>
+		  </li>
+		  
+		
+	      </ul>
+	    </div>
+	    <div class="span8">
+	      <div class="main-content"><div class="page-header">
+  <h1>Laboratorio #2 <small><strong>ANTLR</strong></small></h1>
+</div>
+<!--<p class="meta">15 Jul 2013</p>-->
+
+<div class="post">
+<h2 id='objetivos'>Objetivos</h2>
+
+<p>Para esta práctica se espera que tengan su primera toma de contacto con ANTLR. ANTLR es una herramienta que les permite generar analizadores léxicos y sintácticos, de forma fácil.<br />Los objetivos de esta práctica son:</p>
+
+<ul>
+<li>Comenzar a trabajar con ANTLR.</li>
+
+<li>Aprender conceptos básicos de ANTLR.</li>
+
+<li>Poner en práctica lo visto en clase sobre Expresiones Regulares y Analizadores Léxicos.</li>
+
+<li>Escribir una gramática simple para un analizador léxico.</li>
+
+<li>Que practiquen un poco y se diviertan con Java y ANTLR ;)</li>
+</ul>
+<hr />
+<h2 id='descripcin'>Descripción</h2>
+
+<p>Debera construir un analizador léxico que reconozca:</p>
+
+<ol>
+<li>Numeros enteros y flotantes.</li>
+
+<li>Operadores (+, -, *, /).</li>
+
+<li>Ignore espacios en blanco.</li>
+
+<li>Detecte errores al recibir de input algo que contenga letras.</li>
+
+<li>Debera recibir un archivo de la linea de comandos.</li>
+</ol>
+<hr />
+<h2 id='instrucciones'>Instrucciones</h2>
+
+<p>Para esto debe escribir una gramática de ANTLR, en donde detalle un conjunto de <code>Tokens</code>. Un token para los numeros enteros, otro para flotantes, uno para cada operador, etc. En el GES, en la sección de Material de apoyo, hay un archivo base para que comience.</p>
+
+<p>Además debe escribir un token que reconozca algo que contenga letras (Ej: &#8216;foo&#8217;, &#8216;bar&#8217;)</p>
+
+<p>No olvide indicar en la gramática que los archivos generados pertencen al paquete del laboratorio:</p>
+
+<p><div class='highlight'><pre><code class='java'><span class='nd'>@header</span><span class='o'>{</span>
+  <span class='kn'>package</span> <span class='n'>laboratorios</span><span class='o'>.</span><span class='na'>lab02</span><span class='o'>;</span>
+<span class='o'>}</span>
+</code></pre></div></p>
+
+<p>Para probar su laboratorio puede utilizar esta función en la clase Main.</p>
+<div class='highlight'><pre><code class='java'><span class='kd'>public</span> <span class='kd'>static</span> <span class='kt'>void</span> <span class='nf'>main</span><span class='o'>(</span><span class='n'>String</span><span class='o'>[]</span> <span class='n'>args</span><span class='o'>)</span> <span class='kd'>throws</span> <span class='n'>Exception</span><span class='o'>{</span>
+	<span class='k'>try</span><span class='o'>{</span>
+	    <span class='n'>Lab02</span> <span class='n'>lexer</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>Lab02</span><span class='o'>(</span><span class='k'>new</span> <span class='n'>ANTLRFileStream</span><span class='o'>(</span><span class='n'>args</span><span class='o'>[</span><span class='mi'>0</span><span class='o'>]));</span>
+	    <span class='k'>while</span> <span class='o'>(</span><span class='n'>lexer</span><span class='o'>.</span><span class='na'>nextToken</span><span class='o'>().</span><span class='na'>getType</span><span class='o'>()</span> <span class='o'>!=</span> <span class='n'>Token</span><span class='o'>.</span><span class='na'>EOF</span><span class='o'>);</span>
+	<span class='o'>}</span><span class='k'>catch</span><span class='o'>(</span><span class='n'>ArrayIndexOutOfBoundsException</span> <span class='n'>aiobe</span><span class='o'>){</span>
+	    <span class='n'>System</span><span class='o'>.</span><span class='na'>err</span><span class='o'>.</span><span class='na'>println</span><span class='o'>(</span><span class='s'>&quot;Must provide a valid path to the filename with the tokens&quot;</span><span class='o'>);</span>
+	    <span class='n'>System</span><span class='o'>.</span><span class='na'>exit</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>);</span>
+	<span class='o'>}</span><span class='k'>catch</span><span class='o'>(</span><span class='n'>Exception</span> <span class='n'>e</span><span class='o'>){</span>
+	    <span class='n'>System</span><span class='o'>.</span><span class='na'>err</span><span class='o'>.</span><span class='na'>println</span><span class='o'>(</span><span class='s'>&quot;Must provide a valid path to the filename with the tokens&quot;</span><span class='o'>);</span>
+	    <span class='n'>System</span><span class='o'>.</span><span class='na'>exit</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>);</span>
+	<span class='o'>}</span>
+<span class='o'>}</span>
+</code></pre></div>
+<p>Siéntase en la libertad de modificarlo, pero no deberia ser necesario.<br />Escriba en un archivo de texto un conjunto de números, operaciones, y palabras.<br />Luego ejecute el laboratorio desde una consola (cmd) y envíe el nombre del archivo como parámetro.</p>
+<hr />
+<h2 id='entrega'>Entrega</h2>
+
+<p>La entrega se realizará a través del <code>GES</code> antes de las <strong>23:55:00</strong> del día <strong>Lunes 22 de Julio de 2013</strong>, debe enviar un archivo llamado <code>carnet.zip</code> conteniendo el directorio <code>lab02</code> que debe llevar <strong>todos</strong> sus archivos.</p>
+<hr />
+</div>
+</div>
+	    </div>
+	  </div>
+	  <div class="push"></div>
+	</div>
+      </div>
+      <div class="footer">
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span8 offset2">
+	      <div class="credits">
+		<p class="muted">
+		  Universidad Galileo - <a mailto="diegofigueroa@galileo.edu">diegofigueroa@galileo.edu</a> - CCIV 2013
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </body>
+    
+    <script type="text/javascript" src="/ug-cc4-labs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/ug-cc4-labs/bootstrap/js/bootstrap.min.js"></script>
+</html>

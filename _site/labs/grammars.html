@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Laboratorio #4</title>
+        <meta name="viewport" content="width=device-width">
+        
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/syntax.css">
+	<link rel="stylesheet" type="text/css" href="/ug-cc4-labs/bootstrap/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/main.css">
+    </head>
+    <body>
+      <div id="wrap">
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container-fluid">
+	      <div class="span8 offset2">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</a>
+		<a href="/">
+		  <img class="brand-logo pull-left" src="/ug-cc4-labs/images/ug_128.png" width="32px">
+		</a>
+		<a class="brand" href="/ug-cc4-labs/">Laboratorios</a>
+		<div class="nav-collapse collapse">
+		  <ul class="nav">
+		    <li class="active"><a href="#">Home</a></li>
+		  </ul>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	  
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2">
+	      <ul class="nav nav-list bs-docs-sidenav affix">
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic2.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #9
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #8
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/ast.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #7
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/json-parser.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #6
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/json.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #5
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li class="active">
+		    <a href="/ug-cc4-labs/labs/grammars.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #4
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/lexers.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #3
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/antlr.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #2
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/packages.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #1
+		    </a>
+		  </li>
+		  
+		
+	      </ul>
+	    </div>
+	    <div class="span8">
+	      <div class="main-content"><div class="page-header">
+  <h1>Laboratorio #4 <small><strong>Mi primer parser con ANTLR</strong></small></h1>
+</div>
+<!--<p class="meta">30 Jul 2013</p>-->
+
+<div class="post">
+<h2 id='objetivos'>Objetivos</h2>
+
+<p>En esta práctica seguirá trabajando con ANTLR y se familiarizará con la forma de trabajar analizadores sintácticos.</p>
+
+<p>Los objetivos de la práctica son:</p>
+
+<ul>
+<li>Poner en práctica lo visto en clase acerca de analizadores sintácticos y herramientas automatizadas.</li>
+
+<li>Escribir un parser de ANTLR para un gramática simple.</li>
+
+<li>Que practiquen un poco y se diviertan con Java y ANTLR ;)</li>
+</ul>
+<hr />
+<h2 id='descripcin'>Descripción</h2>
+
+<p>Para este laboratorio deberá implementar un parser que cumpla con las siguientes especificaciones.</p>
+
+<p>Para implementar la gramatica debe seguir las siguientes reglas:</p>
+
+<ol>
+<li>El inicio será un listado de declaraciones o un listado de expresiones (pueden ser 0 o más).</li>
+
+<li>El listado de declaraciones son de la forma <code>&lt;tipo&gt; &lt;variable&gt;, &lt;variable&gt;, &lt;variable&gt;;</code> donde tipo es uno de: <code>(int boolean float)</code>.<br />El listado de variables puede incluir una o más variables, separadas por coma y está terminado por un punto y coma.</li>
+
+<li>El listado de expresiones debe llevar una expresión o una asignación, seguido de punto y coma. La asignación es de la forma <code>&lt;variable&gt; = &lt;expresion&gt;;</code>.</li>
+
+<li>La expresión puede ser una suma, resta, multiplicación, un número entero (en base 10) o una variable.</li>
+</ol>
+<div class='highlight'><pre><code class='java'>  <span class='n'>E</span> <span class='o'>-</span> <span class='o'>&gt;</span> <span class='n'>E</span> <span class='o'>+</span> <span class='n'>E</span> <span class='o'>|</span>
+	<span class='n'>E</span> <span class='o'>-</span> <span class='n'>E</span> <span class='o'>|</span>
+	<span class='n'>E</span> <span class='o'>*</span> <span class='n'>E</span> <span class='o'>|</span>
+	<span class='n'>E</span> <span class='o'>/</span> <span class='n'>E</span> <span class='o'>|</span>
+	<span class='n'>N</span>     <span class='o'>|</span>
+	<span class='n'>VAR</span><span class='o'>;</span>
+</code></pre></div><br />
+<p>Recuerde que en el archivo Lab04Scanner.g van el resto de sus reglas lexicas.<br />Recuerde <strong>no asociar acciones a las reglas</strong>.<br />Recuerde agregar la palabra reservada <code>float</code> y los simbolos para los lexemas <code>, ; ( ) =</code>.</p>
+<hr />
+<h2 id='entrega'>Entrega</h2>
+
+<p>La entrega se realizará a través del <code>GES</code> antes de las 23:55:00 del día Lunes 5 de Agosto de 2013, debe enviar un archivo llamado <code>carnet.zip</code> conteniendo el directorio lab04 que debe llevar todos sus archivos.</p>
+<hr />
+</div>
+</div>
+	    </div>
+	  </div>
+	  <div class="push"></div>
+	</div>
+      </div>
+      <div class="footer">
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span8 offset2">
+	      <div class="credits">
+		<p class="muted">
+		  Universidad Galileo - <a mailto="diegofigueroa@galileo.edu">diegofigueroa@galileo.edu</a> - CCIV 2013
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </body>
+    
+    <script type="text/javascript" src="/ug-cc4-labs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/ug-cc4-labs/bootstrap/js/bootstrap.min.js"></script>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Laboratorio #5</title>
+        <meta name="viewport" content="width=device-width">
+        
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/syntax.css">
+	<link rel="stylesheet" type="text/css" href="/ug-cc4-labs/bootstrap/css/bootstrap.min.css"/>
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/ug-cc4-labs/css/main.css">
+    </head>
+    <body>
+      <div id="wrap">
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container-fluid">
+	      <div class="span8 offset2">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</a>
+		<a href="/">
+		  <img class="brand-logo pull-left" src="/ug-cc4-labs/images/ug_128.png" width="32px">
+		</a>
+		<a class="brand" href="/ug-cc4-labs/">Laboratorios</a>
+		<div class="nav-collapse collapse">
+		  <ul class="nav">
+		    <li class="active"><a href="#">Home</a></li>
+		  </ul>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	  
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2">
+	      <ul class="nav nav-list bs-docs-sidenav affix">
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic2.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #9
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/semantic.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #8
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/ast.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #7
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/json-parser.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #6
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li class="active">
+		    <a href="/ug-cc4-labs/labs/json.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #5
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/grammars.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #4
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/lexers.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #3
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/antlr.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #2
+		    </a>
+		  </li>
+		  
+		
+		  
+		  <li>
+		    <a href="/ug-cc4-labs/labs/packages.html">
+		      <i class="icon-chevron-right"></i>
+		      Laboratorio #1
+		    </a>
+		  </li>
+		  
+		
+	      </ul>
+	    </div>
+	    <div class="span8">
+	      <div class="main-content"><div class="page-header">
+  <h1>Laboratorio #5 <small><strong>JSON Lexer</strong></small></h1>
+</div>
+<!--<p class="meta">06 Aug 2013</p>-->
+
+<div class="post">
+<h2 id='objetivos'>Objetivos</h2>
+
+<p>Para este laboratorio trabajaremos con un estandar de intercambio de datos llamado JSON (JavaScript Object Notation).<br />Este esta basado en Javascript y es uno de los estandares mas utilizados por ser &#8220;open&#8221; y human-readable. Puede revisar más información sobre JSON <a href='http://tools.ietf.org/html/rfc4627'>aquí</a>.</p>
+
+<p>Los objetivos de la práctica son:</p>
+
+<ul>
+<li>Poner en práctica lo visto en clase acerca de analizadores léxicos.</li>
+
+<li>Escribir un lexer de ANTLR para JSON.</li>
+
+<li>Que practiquen un poco y se diviertan con Java, JSON y ANTLR ;)</li>
+</ul>
+<hr />
+<h2 id='descripcin'>Descripción</h2>
+
+<p>Usted debe hacer un análisis léxico sobre un archivo de input (por la linea de comandos) con extencion .json y desplegar en pantalla los <code>tokens</code> que su programa reconoció.<br />Utilice ANTLR para definir su lexer. Incluya además un <code>Makefile</code> y siga la estructura de laboratorios que hemos estado utilizando (su paquete para este ejercicio seria <code>laboratorios.lab05[.paquetes_adicionales]</code>).</p>
+
+<p>A continuacion damos un ejemplo del parseo de un archivo JSON válido:</p>
+<div class='highlight'><pre><code class='json'><span class='p'>{</span>
+	<span class='nt'>&quot;nombre&quot;</span><span class='p'>:</span> <span class='s2'>&quot;Homero J&quot;</span><span class='p'>,</span>
+	<span class='nt'>&quot;apellido&quot;</span><span class='p'>:</span> <span class='s2'>&quot;Simpson&quot;</span><span class='p'>,</span>
+	<span class='nt'>&quot;age&quot;</span><span class='p'>:</span> <span class='mi'>37</span><span class='p'>,</span>
+	<span class='nt'>&quot;direccion&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+		<span class='nt'>&quot;calle&quot;</span><span class='p'>:</span> <span class='s2'>&quot;Avenida Siempre Viva 17-42&quot;</span><span class='p'>,</span>
+		<span class='nt'>&quot;ciudad&quot;</span><span class='p'>:</span> <span class='s2'>&quot;Springfield&quot;</span><span class='p'>,</span>
+		<span class='nt'>&quot;pais&quot;</span><span class='p'>:</span> <span class='s2'>&quot;Estados Unidos de Norte America&quot;</span><span class='p'>,</span>
+		<span class='nt'>&quot;codigoPostal&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1513&quot;</span>
+	<span class='p'>},</span>
+	<span class='nt'>&quot;numeroTelefonico&quot;</span><span class='p'>:</span> <span class='p'>[</span>
+		<span class='p'>{</span>
+			<span class='nt'>&quot;tipo&quot;</span><span class='p'>:</span> <span class='s2'>&quot;casa&quot;</span><span class='p'>,</span>
+			<span class='nt'>&quot;numero&quot;</span><span class='p'>:</span> <span class='s2'>&quot;0555-1234&quot;</span>
+		<span class='p'>},</span>
+		<span class='p'>{</span>
+			<span class='nt'>&quot;tipo&quot;</span><span class='p'>:</span> <span class='s2'>&quot;fax&quot;</span><span class='p'>,</span>
+			<span class='nt'>&quot;numero&quot;</span><span class='p'>:</span> <span class='s2'>&quot;0555-4567&quot;</span>
+		<span class='p'>}</span>
+	<span class='p'>]</span>
+<span class='p'>}</span>
+</code></pre></div><br />
+<p>Para este archivo usted debería de analizar cada uno de los tokens del mismo. Su output (desplegado en pantalla) debería ser algo parecido al siguiente.<br /><strong>NOTA</strong>: No es necesario que despliegue usando un formato idéntico al archivo .json (como se muestra en este ejemplo), esto queda a su discreción.</p>
+<div class='highlight'><pre><code class='bash'>user@laptop:~ &gt;
+      LBRACE 
+	      STRING COLON STRING COMA 
+	      STRING COLON STRING COMA
+	      STRING COLON INTEGER COMA
+	      STRING COLON LBRACE
+		      STRING COLON STRING COMA
+		      STRING COLON STRING COMA
+		      STRING COLON STRING COMA
+		      STRING COLON STRING 
+	      RBRACE COMA
+	      STRING COLON LBRACKET
+		      LBRACE
+			      STRING COLON STRING COMA
+			      STRING COLON STRING
+		      RBRACE COMA
+		      LBRACE
+			      STRING COLON STRING COMA
+			      STRING COLON STRING
+		      RBRACE COMA
+	      RBRACKET
+      RBRACE
+</code></pre></div><hr />
+<h2 id='entrega'>Entrega</h2>
+
+<p>La entrega se realizará a través del <code>GES</code> antes de las 23:55:00 del día Lunes 12 de Agosto de 2013, debe enviar un archivo llamado <code>carnet.zip</code> conteniendo el directorio lab05 que debe llevar todos sus archivos.</p>
+<hr />
+</div>
+</div>
+	    </div>
+	  </div>
+	  <div class="push"></div>
+	</div>
+      </div>
+      <div class="footer">
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span8 offset2">
+	      <div class="credits">
+		<p class="muted">
+		  Universidad Galileo - <a mailto="diegofigueroa@galileo.edu">diegofigueroa@galileo.edu</a> - CCIV 2013
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </body>
+    
+    <script type="text/javascript" src="/ug-cc4-labs/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/ug-cc4-labs/bootstrap/js/bootstrap.min.js"></script>
+</html>
